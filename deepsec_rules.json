@@ -4,7 +4,7 @@
       {
         "comment": "A potentially tained data were returned from the called function.",
         "id": "Main.taint_source_X1_retval()->Integer",
-        "class": "Main",
+        "class": "secdemo.Main",
         "method": "taint_source_X1_retval:()I",
         "result": {
           "location": "return_value",
@@ -14,7 +14,7 @@
       {
         "comment": "The return value from the sanitisation function is free from taint issues.",
         "id": "Main.taint_sanitiser_X1_retval(Integer)->*",
-        "class": "Main",
+        "class": "secdemo.Main",
         "method": "taint_sanitiser_X1_retval:(I)I",
         "sanitizes": {
           "location": "return_value",
@@ -24,7 +24,7 @@
       {
         "comment": "Writing a potentially tainted data into the output",
         "id": "Main.taint_sink_X1_arg_0(Integer)",
-        "class": "Main",
+        "class": "secdemo.Main",
         "method": "taint_sink_X1_arg_0:(I)V",
         "sinkTarget": {
           "location": "arg0",

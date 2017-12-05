@@ -1,3 +1,5 @@
+package secdemo;
+
 public class Main {
   public static void stringFoo() {
     String s = "hello";
