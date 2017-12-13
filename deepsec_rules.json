@@ -1,35 +1,106 @@
 {
+  "namespace": "com.diffblue.security",
   "rules":
     [
       {
-        "comment": "A potentially tained data were returned from the called function.",
-        "id": "Main.taint_source_X1_retval()->Integer",
-        "class": "secdemo.Main",
-        "method": "taint_source_X1_retval:()I",
+        "comment": "Streams returned by getInputStream on ServletRequest are tainted",
+        "class": "training07.HttpServletRequest",
+        "method": "getInputStream:()Ltraining07/InputStream;",
         "result": {
-          "location": "return_value",
-          "taint": "<taint_source_X1_retval@Integer>"
+          "location": "returns",
+          "taint": "Tainted stream"
         }
       },
       {
-        "comment": "The return value from the sanitisation function is free from taint issues.",
-        "id": "Main.taint_sanitiser_X1_retval(Integer)->*",
-        "class": "secdemo.Main",
-        "method": "taint_sanitiser_X1_retval:(I)I",
-        "sanitizes": {
-          "location": "return_value",
-          "taint": "<taint_source_X1_retval@Integer>"
+        "comment": "Read from tainted stream gives tainted string",
+        "class": "training07.InputStream",
+        "method": "read:([BII)I",
+        "input": {
+          "location": "this",
+          "taint": "Tainted stream"
+        },
+        "result": {
+          "location": "arg1",
+          "namespace": "com.diffblue.security.specialized",
+          "taint": "Tainted byte array"
         }
       },
       {
-        "comment": "Writing a potentially tainted data into the output",
-        "id": "Main.taint_sink_X1_arg_0(Integer)",
-        "class": "secdemo.Main",
-        "method": "taint_sink_X1_arg_0:(I)V",
+        "comment": "Construction from an array of tainted bytes gives a tainted string",
+        "class": "training07.String",
+        "method": "<init>:([BII)V",
+        "input": {
+          "location": "arg1",
+          "namespace": "com.diffblue.security.specialized",
+          "taint": "Tainted byte array"
+        },
+        "result": {
+          "location": "this",
+          "taint": "Tainted string"
+        }
+      },
+      {
+        "comment": "Bytes obtained from a tainted string are tainted.",
+        "class": "training07.String",
+        "method": "getBytes:()[B",
+        "input": {
+          "location": "this",
+          "taint": "Tainted string"
+        },
+        "result": {
+          "location": "returns",
+          "namespace": "com.diffblue.security.specialized",
+          "taint": "Tainted byte array"
+        }
+      },
+      {
+        "comment": "Streams returned by getOutputStream on ServletResponse are vulnerable",
+        "class": "training07.HttpServletResponse",
+        "method": "getOutputStream:()Ltraining07/OutputStream;",
+        "result": {
+          "location": "returns",
+          "vulnerability": "Vulnerable stream"
+        }
+      },
+      {
+        "comment": "Writing potentially tainted bytes (in a given range) to a vulnerable stream is a sink.",
+        "class": "training07.OutputStream",
+        "method": "write:([BII)V",
+        "input": {
+          "location": "arg1",
+          "namespace": "com.diffblue.security.specialized",
+          "taint": "Tainted byte array"
+        },
         "sinkTarget": {
-          "location": "arg0",
-          "vulnerability": "<taint_source_X1_retval@Integer>"
+          "location": "this",
+          "vulnerability": "Vulnerable stream"
+        }
+      },
+      {
+        "comment": "Writing potentially tainted bytes (the whole array) to a vulnerable stream is a sink.",
+        "class": "training07.OutputStream",
+        "method": "write:([B)V",
+        "input": {
+          "location": "arg1",
+          "namespace": "com.diffblue.security.specialized",
+          "taint": "Tainted byte array"
+        },
+        "sinkTarget": {
+          "location": "this",
+          "vulnerability": "Vulnerable stream"
+        },
+        "message": "Unescaped HTML potentially written back to browser"
+      },
+      {
+        "comment": "Calling sanitise on a tainted string removes all taint from it.",
+        "class": "training07.test",
+        "method": "sanitise:(Ltraining07/String;)Ltraining07/String;",
+        "sanitizes": {
+          "taint": "Tainted string",
+          "location": "return_value"
         }
       }
     ]
 }
+
+
