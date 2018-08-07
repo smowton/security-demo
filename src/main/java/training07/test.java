@@ -106,7 +106,7 @@ public class test extends HttpServlet {
     str = sanitise(str);
     OutputStream out0 = getOutStream(response);
     OutputStream out = out0;
-    out.write(data,0,size);
+    // out.write(data,0,size);
     out.write(str.getBytes());
   }
 
