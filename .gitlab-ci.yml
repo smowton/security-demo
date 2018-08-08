@@ -1,4 +1,4 @@
 security-scan:
  stage: build
  script:
-   - env
+   - /home/chris/dashboard/src/security-analyser/gitlab-wrapper.sh
