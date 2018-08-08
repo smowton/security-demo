@@ -1,7 +1,7 @@
-security-scan:
- stage: build
- script:
-   - /home/chris/dashboard/src/security-analyser/gitlab-wrapper.sh
+#security-scan:
+#  stage: build
+#  script:
+#    - /home/chris/dashboard/src/security-analyser/gitlab-wrapper.sh
 
 dast:
   script:
