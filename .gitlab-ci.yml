@@ -6,7 +6,5 @@
 dast:
   script:
     - curl -o gl-dast-report.json https://gitlab.com/snippets/1691383/raw
-  only:
-    - branches
   artifacts:
     paths: [gl-dast-report.json]
