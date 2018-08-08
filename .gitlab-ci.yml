@@ -1,0 +1,4 @@
+security-scan:
+ stage: build
+ script:
+   - env
