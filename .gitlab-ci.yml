@@ -3,8 +3,10 @@
 #  script:
 #    - /home/chris/dashboard/src/security-analyser/gitlab-wrapper.sh
 
-dast:
+sast:
   script:
-    - curl -o gl-dast-report.json https://gitlab.com/snippets/1691383/raw
+    - curl -o gl-sast-report.json https://gitlab.com/snippets/1683055/raw
+  only:
+    - branches
   artifacts:
-    paths: [gl-dast-report.json]
+    paths: [gl-sast-report.json]
