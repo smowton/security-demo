@@ -69,31 +69,7 @@ class ServletInputStream extends InputStream {
 class ServletOutputStream extends OutputStream {
 }
 
-class HttpServletRequest {
-  public HttpServletRequest() {
-    this.s = new ServletInputStream();
-  }
-  public InputStream getInputStream() {
-    return s;
-  }
-  private ServletInputStream s;
-}
-
-class HttpServletResponse {
-  public HttpServletResponse() {
-    this.s = new ServletOutputStream();
-  }
-  public OutputStream getOutputStream() {
-    return s;
-  }
-  private ServletOutputStream s;
-}
-
-class HttpServlet {
-  public void doGet(HttpServletRequest request, HttpServletResponse response) {}
-}
-
-public class test extends HttpServlet {
+public class test extends javax.servlet.http.HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) {
