@@ -1,12 +1,6 @@
-#security-scan:
-#  stage: build
-#  script:
-#    - /home/chris/dashboard/src/security-analyser/gitlab-wrapper.sh
-
 sast:
+  stage: build
   script:
-    - curl -o gl-sast-report.json https://gitlab.com/snippets/1683055/raw
-  only:
-    - branches
+    - /home/chris/security-scanner/gitlab-integration/gitlab-wrapper.sh
   artifacts:
     paths: [gl-sast-report.json]
