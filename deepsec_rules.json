@@ -7,7 +7,7 @@
         "class": "training07.HttpServletRequest",
         "method": "getInputStream:()Ltraining07/InputStream;",
         "result": {
-          "location": "returns",
+          "location": "returnValue",
           "taint": "Tainted stream"
         }
       },
@@ -48,7 +48,7 @@
           "taint": "Tainted string"
         },
         "result": {
-          "location": "returns",
+          "location": "returnValue",
           "namespace": "com.diffblue.security.specialized",
           "taint": "Tainted byte array"
         }
@@ -58,7 +58,7 @@
         "class": "training07.HttpServletResponse",
         "method": "getOutputStream:()Ltraining07/OutputStream;",
         "result": {
-          "location": "returns",
+          "location": "returnValue",
           "vulnerability": "Vulnerable stream"
         }
       },
@@ -97,7 +97,7 @@
         "method": "sanitise:(Ltraining07/String;)Ltraining07/String;",
         "sanitizes": {
           "taint": "Tainted string",
-          "location": "return_value"
+          "location": "returnValue"
         }
       }
     ]

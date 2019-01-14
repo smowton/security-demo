@@ -1,0 +1,8 @@
+{
+    "buildCommand": "mvn compile; cp -r target DIFFBLUE_SECURITY_DEPLOY_DIR",
+    "commandArguments":
+    {
+	"extraRules": ["../version-new/deepsec_rules.json"],
+	"entryPoints": ["training07.test.doGet"]
+    }
+}
